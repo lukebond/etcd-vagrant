@@ -7,24 +7,21 @@ $new_discovery_url="https://discovery.etcd.io/new?size=#{$num_instances}"
 # To automatically replace the discovery token on 'vagrant up', uncomment
 # the lines below:
 #
-#if File.exists?('user-data') && ARGV[0].eql?('up')
-#  require 'open-uri'
-#  require 'yaml'
-#
-#  token = open($new_discovery_url).read
-#
-#  data = YAML.load(IO.readlines('user-data')[1..-1].join)
-#  if data['coreos'].key? 'etcd'
-#    data['coreos']['etcd']['discovery'] = token
-#  end
-#  if data['coreos'].key? 'etcd2'
-#    data['coreos']['etcd2']['discovery'] = token
-#  end
-#
-#  yaml = YAML.dump(data)
-#  File.open('user-data', 'w') { |file| file.write("#cloud-config\n\n#{yaml}") }
-#end
-#
+if File.exists?('user-data') && ARGV[0].eql?('up')
+  require 'open-uri'
+  require 'yaml'
+
+  token = open($new_discovery_url).read
+
+  data = YAML.load(IO.readlines('user-data')[1..-1].join)
+  if data['coreos'].key? 'etcd'
+    data['coreos']['etcd']['discovery'] = token
+  end
+
+  yaml = YAML.dump(data)
+  File.open('user-data', 'w') { |file| file.write("#cloud-config\n\n#{yaml}") }
+end
+
 
 #
 # coreos-vagrant is configured through a series of configuration
@@ -39,7 +36,7 @@ $new_discovery_url="https://discovery.etcd.io/new?size=#{$num_instances}"
 #$instance_name_prefix="core"
 
 # Official CoreOS channel from which updates should be downloaded
-#$update_channel='alpha'
+$update_channel='beta'
 
 # Log the serial consoles of CoreOS VMs to log/
 # Enable by setting value to true, disable with false
@@ -60,9 +57,9 @@ $new_discovery_url="https://discovery.etcd.io/new?size=#{$num_instances}"
 #$share_home=false
 
 # Customize VMs
-#$vm_gui = false
-#$vm_memory = 1024
-#$vm_cpus = 1
+$vm_gui = false
+$vm_memory = 256
+$vm_cpus = 1
 
 # Share additional folders to the CoreOS VMs
 # For example,
