@@ -1,7 +1,11 @@
-# CoreOS Vagrant
+# Etcd Vagrant
+## Based on coreos-vagrant
 
-This repo provides a template Vagrantfile to create a CoreOS virtual machine using the VirtualBox software hypervisor.
-After setup is complete you will have a single CoreOS virtual machine running on your local machine.
+This repo is a customised coreos-vagrant setup for bringing up a 3-node Etcd cluster.
+
+Just `vagrant up` and you're away. IP range will be 172.17.8.201-203.
+
+Remainder of the README is from `coreos-vagrant`.
 
 ## Streamlined setup
 
@@ -13,8 +17,8 @@ After setup is complete you will have a single CoreOS virtual machine running on
 2) Clone this project and get it running!
 
 ```
-git clone https://github.com/coreos/coreos-vagrant/
-cd coreos-vagrant
+git clone https://github.com/lukebond/etcd-vagrant/
+cd etcd-vagrant
 ```
 
 3) Startup and SSH
